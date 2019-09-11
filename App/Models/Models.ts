@@ -128,6 +128,8 @@ class SQLAuthentication {
     sqlUserName: string;
     sqlPassword: string;
     constructor() {
+        this.sqlPassword = "";
+        this.sqlUserName = "";
         this.useFarmSetting = true;
     }
 }

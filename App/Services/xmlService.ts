@@ -111,8 +111,8 @@
             this.config.value.farm.database.sqlAuthentication.sqlUserName = "";
             this.config.value.farm.database.sqlAuthentication.sqlPassword = "";           
             
-            for (let webapp of this.config.value.webApplications) {
-                webapp.database.database.sqlAuthentication = new SQLAuthentication();
+            for (let webapp of this.config.value.webApplications.webApplication) {
+                webapp.database.sqlAuthentication = new SQLAuthentication();
             }
 
             this.config.value.serviceApps.managedMetadataServiceApp.database.sqlAuthentication = new SQLAuthentication();
