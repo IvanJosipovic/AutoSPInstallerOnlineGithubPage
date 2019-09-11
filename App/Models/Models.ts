@@ -3,6 +3,7 @@
 
 declare var Jsonix;
 declare var ConfigModel;
+declare var ConfigModel39960;
 declare var ConfigModel39951;
 declare var ConfigModel3995;
 declare var ConfigModel399;
@@ -103,10 +104,12 @@ class Database {
     name: string;
     server: string;
     dbAlias: DBAlias;
+    sqlAuthentication: SQLAuthentication;
     constructor() {
         this.name = "";
         this.server = "";
         this.dbAlias = new DBAlias();
+        this.sqlAuthentication = new SQLAuthentication();
     }
 }
 class DBAlias {
@@ -117,6 +120,17 @@ class DBAlias {
         this.create = false;
         this.dbInstance = "";
         this.dbPort = "";
+    }
+}
+
+class SQLAuthentication {
+    useFarmSetting: boolean;
+    sqlUserName: string;
+    sqlPassword: string;
+    constructor() {
+        this.sqlPassword = "";
+        this.sqlUserName = "";
+        this.useFarmSetting = true;
     }
 }
 

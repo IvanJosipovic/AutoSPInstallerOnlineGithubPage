@@ -37,6 +37,12 @@
             this.config = unmarshaller.unmarshalString(xml);
             this.Upgrde39951to39960();
         };
+        this.UpgrdeXml39960to39970 = function (xml) {
+            var context = new Jsonix.Context([ConfigModel39960]);
+            var unmarshaller = context.createUnmarshaller();
+            this.config = unmarshaller.unmarshalString(xml);
+            this.Upgrde39960to39970();
+        };
 
         // Multi version jumps
         this.UpgrdeXml398toLatest = function (xml) {
@@ -44,16 +50,19 @@
             this.Upgrde399to3995();
             this.Upgrde3995to39951();
             this.Upgrde39951to39960();
+            this.Upgrde39960to39970();
         };
         this.UpgrdeXml399toLatest = function (xml) {
             this.UpgrdeXml399to3995(xml);
             this.Upgrde3995to39951();
             this.Upgrde39951to39960();
+            this.Upgrde39960to39970();
         };
         this.UpgrdeXml3995toLatest = function (xml) {
             this.UpgrdeXml3995to39951(xml);
             this.Upgrde3995to39951();
             this.Upgrde39951to39960();
+            this.Upgrde39960to39970();
         };
 
         // Private Functions
@@ -92,6 +101,35 @@
             this.config.value.farm.serverRoles.webFrontEndWithDistributedCache.provision = "false";
             this.config.value.farm.serverRoles.applicationWithSearch = new Object;
             this.config.value.farm.serverRoles.applicationWithSearch.provision = "false";
+        };
+
+        this.Upgrde39960to39970 = function () {
+            this.config.value.version = "3.99.70";
+
+            this.config.value.farm.database.sqlAuthentication = new Object;
+            this.config.value.farm.database.sqlAuthentication.enable = false;
+            this.config.value.farm.database.sqlAuthentication.sqlUserName = "";
+            this.config.value.farm.database.sqlAuthentication.sqlPassword = "";           
+            
+            for (let webapp of this.config.value.webApplications.webApplication) {
+                webapp.database.sqlAuthentication = new SQLAuthentication();
+            }
+
+            this.config.value.serviceApps.managedMetadataServiceApp.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.userProfileServiceApp.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.enterpriseSearchService.enterpriseSearchServiceApplications.enterpriseSearchServiceApplication.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.stateService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.webAnalyticsService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.spUsageService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.secureStoreService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.businessDataConnectivity.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.wordAutomationService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.appManagementService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.subscriptionSettingsService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.serviceApps.machineTranslationService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.enterpriseServiceApps.accessServices.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.enterpriseServiceApps.performancePointService.database.sqlAuthentication = new SQLAuthentication();
+            this.config.value.projectServer.serviceApp.database.sqlAuthentication = new SQLAuthentication();
         };
     }
     
