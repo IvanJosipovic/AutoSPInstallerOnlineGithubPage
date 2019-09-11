@@ -429,6 +429,34 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication Enable as &quot;false&quot;. Exceptions include e.g. using an Azure SQL Managed Instance which doesn't support Windows integrated authentication.">
+                            <label class="control-label col-md-3">Use SQL Authentication</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" ng-model="config.value.farm.database.sqlAuthentication.enable" />
+                            </div>
+                        </div>
+                        <div ng-show="config.value.farm.database.sqlAuthentication.enable">
+                            <div class="form-group form-group-sm" ng-class="{ 'has-error': farmMainForm.config_value_farm_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                <label class="control-label col-md-3">SQL UserName:</label>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="config.value.farm.database.sqlAuthentication.sqlUserName" name="config_value_farm_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.farm.database.sqlAuthentication.enable" />
+                                    <div ng-messages="farmMainForm.config_value_farm_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                        <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" ng-class="{ 'has-error': farmMainForm.config_value_farm_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                <label class="control-label col-md-3">SQL Password:</label>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="config.value.farm.database.sqlAuthentication.sqlPassword" name="config_value_farm_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.farm.database.sqlAuthentication.enable" />
+                                    <div ng-messages="farmMainForm.config_value_farm_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                        <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group form-group-sm" ng-class="{ 'has-error': farmMainForm.config_value_farm_database_dbPrefix.$invalid }" uib-tooltip="The DBPrefix is perpended to all database names. e.g. If you set this to TEST, your config DB will be TEST_Config. If you set the prefix to localhost, script will perpend each database with the name of the server on which the script is run. Leave this blank for no prefix. NOTE: If you are installing a multi-server farm, it is recommended that you do not use localhost as services provisioned on different servers will have different prefixes.">
                         <label class="control-label col-md-3">Database Prefix:</label>
                         <div class="col-md-9">
@@ -1086,6 +1114,34 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                            <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" ng-model="wa.database.sqlAuthentication.useFarmSetting" />
+                            </div>
+                        </div>
+                        <div ng-show="wa.database.sqlAuthentication.useFarmSetting == false">
+                            <div class="form-group form-group-sm" ng-class="{ 'has-error': this[subForm].wa_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                <label class="control-label col-md-3">SQL UserName:</label>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="wa.database.sqlAuthentication.sqlUserName" name="wa_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="wa.database.sqlAuthentication.useFarmSetting == false" />
+                                    <div ng-messages="this[subForm].wa_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                        <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" ng-class="{ 'has-error': this[subForm].wa_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                <label class="control-label col-md-3">SQL Password:</label>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="wa.database.sqlAuthentication.sqlPassword" name="wa_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="wa.database.sqlAuthentication.useFarmSetting == false" />
+                                    <div ng-messages="this[subForm].wa_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                        <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <fieldset>
                         <legend>Managed Paths</legend>
                         <table class="table table-hover">
@@ -1386,6 +1442,34 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.managedMetadataServiceApp.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.managedMetadataServiceApp.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsMMS.config_value_serviceApps_managedMetadataServiceApp_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.managedMetadataServiceApp.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_managedMetadataServiceApp_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.managedMetadataServiceApp.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsMMS.config_value_serviceApps_managedMetadataServiceApp_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsMMS.config_value_serviceApps_managedMetadataServiceApp_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.managedMetadataServiceApp.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_managedMetadataServiceApp_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.managedMetadataServiceApp.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsMMS.config_value_serviceApps_managedMetadataServiceApp_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ng-form>
@@ -1582,6 +1666,34 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.userProfileServiceApp.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.userProfileServiceApp.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsUPS.config_value_serviceApps_userProfileServiceApp_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.userProfileServiceApp.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_userProfileServiceApp_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.userProfileServiceApp.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsUPS.config_value_serviceApps_userProfileServiceApp_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsUPS.config_value_serviceApps_userProfileServiceApp_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.userProfileServiceApp.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_userProfileServiceApp_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.userProfileServiceApp.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsUPS.config_value_serviceApps_userProfileServiceApp_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ng-form>
@@ -1670,6 +1782,34 @@
                                         <div ng-message="min">The port should be between 1 - 65535.</div>
                                         <div ng-message="max">The port should be between 1 - 65535.</div>
                                         <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.spUsageService.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.spUsageService.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsUsageandHealth.config_value_serviceApps_spUsageService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.spUsageService.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_spUsageService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.spUsageService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsUsageandHealth.config_value_serviceApps_spUsageService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsUsageandHealth.config_value_serviceApps_spUsageService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.spUsageService.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_spUsageService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.spUsageService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsUsageandHealth.config_value_serviceApps_spUsageService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1773,6 +1913,34 @@
                                         <div ng-message="min">The port should be between 1 - 65535.</div>
                                         <div ng-message="max">The port should be between 1 - 65535.</div>
                                         <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.stateService.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.stateService.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsStateService.config_value_serviceApps_stateService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.stateService.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_stateService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.stateService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsStateService.config_value_serviceApps_stateService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsStateService.config_value_serviceApps_stateService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.stateService.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_stateService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.stateService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsStateService.config_value_serviceApps_stateService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -2076,6 +2244,34 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div>
+                                    <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                        <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                        <div class="col-md-9">
+                                            <input type="checkbox" ng-model="config.value.serviceApps.enterpriseSearchService.enterpriseSearchServiceApplications.enterpriseSearchServiceApplication.database.sqlAuthentication.useFarmSetting" />
+                                        </div>
+                                    </div>
+                                    <div ng-show="config.value.serviceApps.enterpriseSearchService.enterpriseSearchServiceApplications.enterpriseSearchServiceApplication.database.sqlAuthentication.useFarmSetting == false">
+                                        <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsSearch.config_value_serviceApps_enterpriseSearchService_enterpriseSearchServiceApplications_enterpriseSearchServiceApplication_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                            <label class="control-label col-md-3">SQL UserName:</label>
+                                            <div class="col-md-9">
+                                                <input type="text" ng-model="config.value.serviceApps.enterpriseSearchService.enterpriseSearchServiceApplications.enterpriseSearchServiceApplication.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_enterpriseSearchService_enterpriseSearchServiceApplications_enterpriseSearchServiceApplication_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.enterpriseSearchService.enterpriseSearchServiceApplications.enterpriseSearchServiceApplication.database.sqlAuthentication.useFarmSetting == false" />
+                                                <div ng-messages="formServiceAppsSearch.config_value_serviceApps_enterpriseSearchService_enterpriseSearchServiceApplications_enterpriseSearchServiceApplication_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                                    <div ng-messages-include="error-messages"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsSearch.config_value_serviceApps_enterpriseSearchService_enterpriseSearchServiceApplications_enterpriseSearchServiceApplication_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                            <label class="control-label col-md-3">SQL Password:</label>
+                                            <div class="col-md-9">
+                                                <input type="text" ng-model="config.value.serviceApps.enterpriseSearchService.enterpriseSearchServiceApplications.enterpriseSearchServiceApplication.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_enterpriseSearchService_enterpriseSearchServiceApplications_enterpriseSearchServiceApplication_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.enterpriseSearchService.enterpriseSearchServiceApplications.enterpriseSearchServiceApplication.database.sqlAuthentication.useFarmSetting == false" />
+                                                <div ng-messages="formServiceAppsSearch.config_value_serviceApps_enterpriseSearchService_enterpriseSearchServiceApplications_enterpriseSearchServiceApplication_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                                    <div ng-messages-include="error-messages"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </fieldset>
                             <fieldset>
                                 <legend>Application Pool</legend>
@@ -2291,6 +2487,34 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.webAnalyticsService.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.webAnalyticsService.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsWebAnalytics.config_value_serviceApps_webAnalyticsService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.webAnalyticsService.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_webAnalyticsService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.webAnalyticsService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsWebAnalytics.config_value_serviceApps_webAnalyticsService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsWebAnalytics.config_value_serviceApps_webAnalyticsService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.webAnalyticsService.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_webAnalyticsService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.webAnalyticsService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsWebAnalytics.config_value_serviceApps_webAnalyticsService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ng-form>
@@ -2391,6 +2615,34 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                            <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" ng-model="config.value.serviceApps.secureStoreService.database.sqlAuthentication.useFarmSetting" />
+                            </div>
+                        </div>
+                        <div ng-show="config.value.serviceApps.secureStoreService.database.sqlAuthentication.useFarmSetting == false">
+                            <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsSecureStore.config_value_serviceApps_secureStoreService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                <label class="control-label col-md-3">SQL UserName:</label>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="config.value.serviceApps.secureStoreService.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_secureStoreService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.secureStoreService.database.sqlAuthentication.useFarmSetting == false" />
+                                    <div ng-messages="formServiceAppsSecureStore.config_value_serviceApps_secureStoreService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                        <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsSecureStore.config_value_serviceApps_secureStoreService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                <label class="control-label col-md-3">SQL Password:</label>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="config.value.serviceApps.secureStoreService.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_secureStoreService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.secureStoreService.database.sqlAuthentication.useFarmSetting == false" />
+                                    <div ng-messages="formServiceAppsSecureStore.config_value_serviceApps_secureStoreService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                        <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </ng-form>
             <!--Secure Store-->
@@ -2487,6 +2739,34 @@
                                     <div ng-message="min">The port should be between 1 - 65535.</div>
                                     <div ng-message="max">The port should be between 1 - 65535.</div>
                                     <div ng-messages-include="error-messages"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                            <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" ng-model="config.value.serviceApps.businessDataConnectivity.database.sqlAuthentication.useFarmSetting" />
+                            </div>
+                        </div>
+                        <div ng-show="config.value.serviceApps.businessDataConnectivity.database.sqlAuthentication.useFarmSetting == false">
+                            <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsBDC.config_value_serviceApps_businessDataConnectivity_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                <label class="control-label col-md-3">SQL UserName:</label>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="config.value.serviceApps.businessDataConnectivity.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_businessDataConnectivity_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.businessDataConnectivity.database.sqlAuthentication.useFarmSetting == false" />
+                                    <div ng-messages="formServiceAppsBDC.config_value_serviceApps_businessDataConnectivity_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                        <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsBDC.config_value_serviceApps_businessDataConnectivity_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                <label class="control-label col-md-3">SQL Password:</label>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="config.value.serviceApps.businessDataConnectivity.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_businessDataConnectivity_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.businessDataConnectivity.database.sqlAuthentication.useFarmSetting == false" />
+                                    <div ng-messages="formServiceAppsBDC.config_value_serviceApps_businessDataConnectivity_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                        <div ng-messages-include="error-messages"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2603,6 +2883,34 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.appManagementService.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.appManagementService.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsAppManagement.config_value_serviceApps_appManagementService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.appManagementService.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_appManagementService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.appManagementService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsAppManagement.config_value_serviceApps_appManagementService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsAppManagement.config_value_serviceApps_appManagementService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.appManagementService.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_appManagementService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.appManagementService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsAppManagement.config_value_serviceApps_appManagementService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ng-form>
@@ -2703,6 +3011,34 @@
                                         <div ng-message="min">The port should be between 1 - 65535.</div>
                                         <div ng-message="max">The port should be between 1 - 65535.</div>
                                         <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.subscriptionSettingsService.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.subscriptionSettingsService.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsSubscriptionService.config_value_serviceApps_subscriptionSettingsService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.subscriptionSettingsService.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_subscriptionSettingsService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.subscriptionSettingsService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsSubscriptionService.config_value_serviceApps_subscriptionSettingsService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsSubscriptionService.config_value_serviceApps_subscriptionSettingsService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.subscriptionSettingsService.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_subscriptionSettingsService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.subscriptionSettingsService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsSubscriptionService.config_value_serviceApps_subscriptionSettingsService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -2811,6 +3147,34 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.wordAutomationService.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.wordAutomationService.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsWordAutomation.config_value_serviceApps_wordAutomationService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.wordAutomationService.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_wordAutomationService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.wordAutomationService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsWordAutomation.config_value_serviceApps_wordAutomationService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsWordAutomation.config_value_serviceApps_wordAutomationService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.wordAutomationService.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_wordAutomationService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.wordAutomationService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsWordAutomation.config_value_serviceApps_wordAutomationService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ng-form>
@@ -2911,6 +3275,34 @@
                                     <div ng-messages="formServiceAppsMachineTranslation.config_value_serviceApps_machineTranslationService_database_dbAlias_dbPort.$error" class="text-danger">
                                         <div ng-message="min">The port should be between 1 - 65535.</div>
                                         <div ng-message="max">The port should be between 1 - 65535.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.serviceApps.machineTranslationService.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.serviceApps.machineTranslationService.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsMachineTranslation.config_value_serviceApps_machineTranslationService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.machineTranslationService.database.sqlAuthentication.sqlUserName" name="config_value_serviceApps_machineTranslationService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.serviceApps.machineTranslationService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsMachineTranslation.config_value_serviceApps_machineTranslationService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formServiceAppsMachineTranslation.config_value_serviceApps_machineTranslationService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.serviceApps.machineTranslationService.database.sqlAuthentication.sqlPassword" name="config_value_serviceApps_machineTranslationService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.serviceApps.machineTranslationService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formServiceAppsMachineTranslation.config_value_serviceApps_machineTranslationService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -3269,6 +3661,34 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.enterpriseServiceApps.accessServices.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.enterpriseServiceApps.accessServices.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formEntServiceAppsAccessServices2013.config_value_enterpriseServiceApps_accessServices_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.enterpriseServiceApps.accessServices.database.sqlAuthentication.sqlUserName" name="config_value_enterpriseServiceApps_accessServices_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.enterpriseServiceApps.accessServices.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formEntServiceAppsAccessServices2013.config_value_enterpriseServiceApps_accessServices_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formEntServiceAppsAccessServices2013.config_value_enterpriseServiceApps_accessServices_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.enterpriseServiceApps.accessServices.database.sqlAuthentication.sqlPassword" name="config_value_enterpriseServiceApps_accessServices_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.enterpriseServiceApps.accessServices.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formEntServiceAppsAccessServices2013.config_value_enterpriseServiceApps_accessServices_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ng-form>
@@ -3387,6 +3807,34 @@
                                         <div ng-message="min">The port should be between 1 - 65535.</div>
                                         <div ng-message="max">The port should be between 1 - 65535.</div>
                                         <div ng-messages-include="error-messages"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="config.value.install.spVersion === '2016' || config.value.install.spVersion === '2019'">
+                            <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="config.value.enterpriseServiceApps.performancePointService.database.sqlAuthentication.useFarmSetting" />
+                                </div>
+                            </div>
+                            <div ng-show="config.value.enterpriseServiceApps.performancePointService.database.sqlAuthentication.useFarmSetting == false">
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formEntServiceAppsPerformancePoint.config_value_enterpriseServiceApps_performancePointService_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                    <label class="control-label col-md-3">SQL UserName:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.enterpriseServiceApps.performancePointService.database.sqlAuthentication.sqlUserName" name="config_value_enterpriseServiceApps_performancePointService_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.enterpriseServiceApps.performancePointService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formEntServiceAppsPerformancePoint.config_value_enterpriseServiceApps_performancePointService_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" ng-class="{ 'has-error': formEntServiceAppsPerformancePoint.config_value_enterpriseServiceApps_performancePointService_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                    <label class="control-label col-md-3">SQL Password:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" ng-model="config.value.enterpriseServiceApps.performancePointService.database.sqlAuthentication.sqlPassword" name="config_value_enterpriseServiceApps_performancePointService_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.enterpriseServiceApps.performancePointService.database.sqlAuthentication.useFarmSetting == false" />
+                                        <div ng-messages="formEntServiceAppsPerformancePoint.config_value_enterpriseServiceApps_performancePointService_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                            <div ng-messages-include="error-messages"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -3758,6 +4206,34 @@
                                                 <div ng-message="min">The port should be between 1 - 65535.</div>
                                                 <div ng-message="max">The port should be between 1 - 65535.</div>
                                                 <div ng-messages-include="error-messages"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="config.value.install.spVersion === '2016' || config.value.install.spVersion === '2019'">
+                                    <div class="form-group form-group-sm" uib-tooltip="In most cases you will want to leave SQLAuthentication UseFarmSetting as &quot;true&quot;, meaning that whatever the settings for SQL auth specified at the farm level are (Enabled or not, credentials) should be used here as well. However since you can use a different SQL server here, you can specify different SQL credentials as well.">
+                                        <label class="control-label col-md-3">Use Farm SQL Authentication Setting</label>
+                                        <div class="col-md-9">
+                                            <input type="checkbox" ng-model="config.value.projectServer.serviceApp.database.sqlAuthentication.useFarmSetting" />
+                                        </div>
+                                    </div>
+                                    <div ng-show="config.value.projectServer.serviceApp.database.sqlAuthentication.useFarmSetting == false">
+                                        <div class="form-group form-group-sm" ng-class="{ 'has-error': formProjectServer.config_value_projectServer_serviceApp_database_sqlAuthentication_sqlUserName.$invalid }" uib-tooltip="SQL UserName">
+                                            <label class="control-label col-md-3">SQL UserName:</label>
+                                            <div class="col-md-9">
+                                                <input type="text" ng-model="config.value.projectServer.serviceApp.database.sqlAuthentication.sqlUserName" name="config_value_projectServer_serviceApp_database_sqlAuthentication_sqlUserName" class="form-control" ng-required="config.value.projectServer.serviceApp.database.sqlAuthentication.useFarmSetting == false" />
+                                                <div ng-messages="formProjectServer.config_value_projectServer_serviceApp_database_sqlAuthentication_sqlUserName.$error" class="text-danger">
+                                                    <div ng-messages-include="error-messages"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm" ng-class="{ 'has-error': formProjectServer.config_value_projectServer_serviceApp_database_sqlAuthentication_sqlPassword.$invalid }" uib-tooltip="SQL Password">
+                                            <label class="control-label col-md-3">SQL Password:</label>
+                                            <div class="col-md-9">
+                                                <input type="text" ng-model="config.value.projectServer.serviceApp.database.sqlAuthentication.sqlPassword" name="config_value_projectServer_serviceApp_database_sqlAuthentication_sqlPassword" class="form-control" ng-required="config.value.projectServer.serviceApp.database.sqlAuthentication.useFarmSetting == false" />
+                                                <div ng-messages="formProjectServer.config_value_projectServer_serviceApp_database_sqlAuthentication_sqlPassword.$error" class="text-danger">
+                                                    <div ng-messages-include="error-messages"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

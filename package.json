@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/IvanJosipovic/AutoSPInstallerOnline#readme",
   "devDependencies": {
-    "gulp-cli" :"2.0.1",
+    "gulp-cli": "2.0.1",
     "gulp": "3.9.1",
     "gulp-concat": "2.6.1",
     "gulp-ngmin": "0.3.0",
